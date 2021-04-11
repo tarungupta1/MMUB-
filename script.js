@@ -348,9 +348,15 @@ async function inserting_testing_centres(fourth, covidOptions){
 
 
         let address_class = await list_of_centres[i].$$(".rllt__details.lqhpac .f5Sf1");
-        let address = await tab.evaluate(function (ele){
-            return ele.textContent;
-        }, address_class[0]);
+        let address;
+        if(address_class.length == 0){
+            address = "NA";
+        }
+        else{
+            address = await tab.evaluate(function (ele){
+                return ele.textContent;
+            }, address_class[0]);
+        }
         centre_details["Address"] = address;
 
 
